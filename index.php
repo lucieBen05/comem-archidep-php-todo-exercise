@@ -43,13 +43,14 @@ if (isset($_POST['action'])) {
     case 'toggle':
 
       $id = $_POST['id'];
+      // moi qui ai ajouté
       if(is_numeric($id)) {
-        $updateQuery = ''; // IMPLEMENT ME - requête pour mettre à jour une tâche
-        // pour la cocher ou la décocher
+          $updateQuery = "UPDATE todo SET done = !done WHERE id = " . $id; // !done permet de dire que la valeur deviendra l'inverse
+        }
         if(!$db->query($updateQuery)) {
           die(print_r($db->errorInfo(), true));
         }
-      }
+      
 
       header('Location: '.BASE_URL);
       die();
@@ -61,12 +62,12 @@ if (isset($_POST['action'])) {
 
       $id = $_POST['id'];
       if(is_numeric($id)) {
-        $deleteQuery = ''; // IMPLEMENT ME - pour effacer une tâche
+        $deleteQuery = ''; // IMPLEMENT ME 
+
         if(!$db->query($deleteQuery)) {
           die(print_r($db->errorInfo(), true));
         }
       }
-
       header('Location: '.BASE_URL);
       die();
 
@@ -75,11 +76,16 @@ if (isset($_POST['action'])) {
   }
 }
 
+
+//if(isset($_GET['supprimer_tache'])) {
+ //   $id = $_GET['supprimer_tache']; 
+ //   $db->exec("DELETE FROM tache WHERE id=$id"
+
 /**
  * Select all tasks from the database.
  */
-$selectQuery = ''; // IMPLEMENT ME -- lister les tâches et qu'elles s'affichent
-//$items = $db->query($selectQuery);
+$selectQuery = ''; // IMPLEMENT ME 
+$items = $db->query($selectQuery);
 ?>
 
 <html>
